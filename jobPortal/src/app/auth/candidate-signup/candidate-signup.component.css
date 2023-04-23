@@ -1,0 +1,32 @@
+.text-center{
+    text-align: center;
+    color: #673ab7;
+}
+
+
+.flex-container{
+    display:  flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    
+    
+  
+  
+  }
+  .flex-item{
+    text-align: center;
+    margin-bottom: 1rem;
+    
+
+   
+  
+  }
+
+  mat-form-field{
+    width: 100%;
+  }
+
+  ::ng-deep mat-hint{
+    text-align: left;
+  }

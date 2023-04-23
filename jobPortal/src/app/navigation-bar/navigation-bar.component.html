@@ -1,0 +1,48 @@
+<div>
+  <div>
+    <mat-toolbar color="primary">
+      <div>
+        <a class="no-link" href="#" color="primary">
+          <mat-icon aria-label="Example home icon" fontIcon="home"
+            >home</mat-icon
+          >
+        </a>
+      </div>
+      <span class="example-spacer1"></span>
+      <div><a class= "no-link" href="#"> My Job Portal</a></div>
+
+      <span class="example-spacer"></span>
+      <div class="toolbar-flex">
+        <div class="toolbar-flex-item">
+          <a class="no-link" href="#" color="primary">
+            <button mat-flat-button color="primary">Job</button>
+          </a>
+        </div>
+        <div class="toolbar-flex-item">
+          <a class="no-link" href="#" color="primary">
+            <button mat-flat-button color="primary">Companies</button>
+          </a>
+        </div>
+      </div>
+
+      <div class="toolbar-flex-item">
+
+          <button mat-flat-button (click)="openLoginDialog()" color="primary"> Log in</button>
+
+      </div>
+      <div class="toolbar-flex-item">
+
+
+          <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">Sign Up</button>
+
+<mat-menu #menu="matMenu" class="menu" color="primary" >
+  <button mat-menu-item (click)="openCandidateDialog()"> Candidate SignUp</button>
+  <button mat-menu-item (click)="openEmployerDialog()">Employer SignUp</button>
+</mat-menu>
+
+
+      </div>
+    </mat-toolbar>
+  </div>
+</div>
+

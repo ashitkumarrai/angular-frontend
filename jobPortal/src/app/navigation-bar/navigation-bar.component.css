@@ -1,0 +1,56 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.example-spacer1 {
+  width: 0.5rem;
+}
+
+
+
+.toolbar-flex{
+  display:  flex;
+
+
+  align-items: self-end;
+}
+.toolbar-flex-item{
+  text-align: center;
+
+}
+.no-link{
+
+
+  text-decoration: none;
+  color: white;
+
+
+
+
+}
+
+mat-icon{
+  font-size: xx-large;
+}
+
+button{
+  font-size: x-large;
+  color: white;
+}
+button:hover{
+  background-color: rgb(41, 41, 105);
+
+}
+
+.mat-toolbar{
+  justify-content: space-around;
+
+
+}
+
+
+
+::ng-deep .menu {
+  background: #673ab7;
+  color: white;
+
+}
