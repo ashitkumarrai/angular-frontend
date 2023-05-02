@@ -43,7 +43,7 @@ export class NavigationBarComponent implements OnInit {
   }
   openLoginDialog(): void{
     const dialogRef = this.dialog.open(LoginComponent, {
-      height: '30rem',
+      height: '26rem',
       width: '30rem',
     });
 

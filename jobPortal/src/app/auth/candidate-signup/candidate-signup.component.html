@@ -1,75 +1,72 @@
 <div class="flex-container">
-  <form [formGroup]="candidateSignUpForm" (ngSubmit)="onSubmit()" >
-  <div class="flex-item">
-    <h2 mat-dialog-title class="text-center">Candidate Sign Up Form</h2>
-  </div>
-  <mat-dialog-content class="mat-typography">
+  <form [formGroup]="candidateSignUpForm">
     <div class="flex-item">
-      <mat-form-field appearance="fill">
-        <mat-label>First Name </mat-label>
-        <input matInput required formControlName="firstname"/>
-      </mat-form-field>
+      <h2 mat-dialog-title class="text-center">Candidate Sign Up Form</h2>
     </div>
+    <mat-dialog-content class="mat-typography">
+      <div class="flex-item">
+        <mat-form-field appearance="fill">
+          <mat-label>First Name </mat-label>
+          <input matInput required formControlName="firstname" />
+        </mat-form-field>
+      </div>
+
+      <div class="flex-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput required formControlName="lastname" />
+        </mat-form-field>
+      </div>
+
+      <div class="flex-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput required formControlName="email" />
+        </mat-form-field>
+      </div>
+
+      <div class="flex-item">
+        <mat-form-field appearance="fill">
+          <mat-label>UserName</mat-label>
+          <input matInput required formControlName="username" />
+          <mat-hint>username must be unique</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-item">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input formControlName="password" requred matInput [type]="hide ? 'password' : 'text'" />
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide" type="button">
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-hint>password length must between 8 to 25, must have atleast one
+            uppercase lowercase & special symbol</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-item">
+        <mat-form-field appearance="fill">
+          <mat-label>confirm password</mat-label>
+          <input formControlName="confirmpassword" required matInput [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide" type="button">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
 
     <div class="flex-item">
-      <mat-form-field appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput required formControlName="lastname" />
-      </mat-form-field>
-    </div>
-
-    <div class="flex-item">
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput required formControlName="email"/>
-      </mat-form-field>
-    </div>
-
-    <div class="flex-item">
-      <mat-form-field appearance="fill">
-        <mat-label>UserName</mat-label>
-        <input matInput required formControlName="username"/>
-        <mat-hint>username must be unique</mat-hint>
-      </mat-form-field>
-      
-    </div>
-   
-
-    <div class="flex-item">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input formControlName="password" requred matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-dialog-actions align="end">
+        <button color="warn" mat-button mat-dialog-close>Cancel</button>
+        <button color="primary" mat-button *ngIf="!matSpinnerShow" cdkFocusInitial type="submit"
+          [disabled]="!candidateSignUpForm.valid" (click)="onSubmit()">
+          Submit
         </button>
-        <mat-hint>password length must between 8 to 25, must have atleast one uppercase lowercase & special symbol</mat-hint>
-      </mat-form-field>
-
-     
+        <mat-spinner *ngIf="matSpinnerShow" [diameter]="55"></mat-spinner>
+      </mat-dialog-actions>
     </div>
-
-    <div class="flex-item">
-     <mat-form-field appearance="fill">
-    <mat-label>confirm password</mat-label>
-    <input formControlName="confirmpassword" required matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
-    </div>
-
-   
-  </mat-dialog-content>
-
-  <div class="flex-item">
-    <mat-dialog-actions align="end">
-      <button color="warn" mat-button mat-dialog-close>Cancel</button>
-      <button  color="primary" mat-button *ngIf="!matSpinnerShow" cdkFocusInitial type="submit"  [disabled]="!candidateSignUpForm.valid">
-         Submit 
-      </button>
-      <mat-spinner *ngIf="matSpinnerShow" [diameter]="55"></mat-spinner>
-    </mat-dialog-actions>
-  </div>
-</form>
+  </form>
 </div>
-

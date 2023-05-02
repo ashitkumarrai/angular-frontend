@@ -1,5 +1,32 @@
 <app-navigation-bar ></app-navigation-bar>
 
 
+<!-- used for displaying job cards -->
+
+
+<div class="grid-container">
+    <div class="grid-item" *ngFor="let j of jobs;" >
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+j.job.employer.user.imageUrl+')'"></div>
+      <mat-card-title>{{j.job.employer.user.firstName}}</mat-card-title>
+      <mat-card-subtitle>{{j.job.employer.company}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="j.companyImage" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+       
+       {{j.job.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Bookmark</button>
+      <button mat-button>Apply</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
+</div>
 
 <router-outlet></router-outlet>

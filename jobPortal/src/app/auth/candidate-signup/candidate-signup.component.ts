@@ -13,19 +13,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./candidate-signup.component.css']
 })
 export class CandidateSignupComponent implements OnInit {
-  hide = true;
+  hide: boolean = true;
   candidateSignUpForm: any;
-  
-  dialogVar: boolean = false;
+
+
   matSpinnerShow: boolean = false;
 
   candidateData!: CandidateModel;
 
-  public signupSubjet = new BehaviorSubject<boolean>(false);
-  constructor(private formBuilder: FormBuilder, private authService: AuthService,public dialog: MatDialog) {
-   
+  //public signupSubjet = new BehaviorSubject<boolean>(false);
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, public dialog: MatDialog) {
 
-    this.matSpinnerShow = false;
+
+    console.log("validation")
     this.candidateSignUpForm = this.formBuilder.group({
       firstname: ['', [Validators.required, Validators.minLength(3)]],
       lastname: ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[a-zA-Z]+$")]],
@@ -33,35 +33,35 @@ export class CandidateSignupComponent implements OnInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmpassword: ['', [Validators.required]],
-      
+
     });
 
 
-    
-    this.candidateData ={
+
+    this.candidateData = {
       user: {
-          
-          username: "",
-           password:"",
-          firstName: "",
-          lastName: "",
-  
-          email: "",
-          contact: "",
-          imageUrl: null,
-          adress: ""  
-         
-     
+
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+
+        email: "",
+        contact: "",
+        imageUrl: null,
+        adress: ""
+
+
       }
-      
+
+    }
+
   }
-   
-  }
-   
-  
+
+
 
   ngOnInit(): void {
-   this.matSpinnerShow = false;
+
   }
 
 
@@ -69,11 +69,11 @@ export class CandidateSignupComponent implements OnInit {
   get firstname() {
     return this.candidateSignUpForm.get('firstname');
   }
- 
+
   get lastname() {
     return this.candidateSignUpForm.get('lastname');
   }
- 
+
   get email() {
     return this.candidateSignUpForm.get('email');
   }
@@ -88,32 +88,34 @@ export class CandidateSignupComponent implements OnInit {
   get confirmpassword() {
     return this.candidateSignUpForm.get('confirmpassword');
   }
-  
- 
+
+
+
+
 
 
 
   onSubmit() {
 
-    this.candidateData.user.firstName = this.candidateSignUpForm.value['firstname'];    
-    this.candidateData.user.lastName = this.candidateSignUpForm.value['lastname'];    
-    this.candidateData.user.username = this.candidateSignUpForm.value['username'];    
-    this.candidateData.user.email = this.candidateSignUpForm.value['email'];    
-    this.candidateData.user.password = this.candidateSignUpForm.value['password'];    
-     
+    this.candidateData.user.firstName = this.candidateSignUpForm.value['firstname'];
+    this.candidateData.user.lastName = this.candidateSignUpForm.value['lastname'];
+    this.candidateData.user.username = this.candidateSignUpForm.value['username'];
+    this.candidateData.user.email = this.candidateSignUpForm.value['email'];
+    this.candidateData.user.password = this.candidateSignUpForm.value['password'];
+
 
     console.log(this.candidateData);
     this.matSpinnerShow = true;
     this.authService.candidateSignup(this.candidateData).subscribe(data => {
       console.log(data);
 
-      
-        this.matSpinnerShow = false;
-       
-        
-    
-      this.signupSubjet.next(true);
-      
+
+      this.matSpinnerShow = false;
+
+
+
+      // this.signupSubjet.next(true);
+
 
       Swal.fire('Thank you...', 'Sign up Done  succesfully! a verification link is sent to your given mail', 'success').then((result) => {
         if (result.value) {
@@ -121,15 +123,15 @@ export class CandidateSignupComponent implements OnInit {
         }
       });
 
-    
+
 
 
     },
       error => {
         console.log(error);
-        this.signupSubjet.next(false);
-    })
-    
-  
+        //this.signupSubjet.next(false);
+      })
+
+
   };
 }

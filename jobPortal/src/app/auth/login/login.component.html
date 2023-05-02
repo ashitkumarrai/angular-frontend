@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="flex-container">
+    <form [formGroup]="loginForm">
+      <div class="flex-item">
+        <h2 mat-dialog-title class="text-center">login Form</h2>
+      </div>
+      <mat-dialog-content class="mat-typography">
+        
+  
+        <div class="flex-item">
+          <mat-form-field appearance="fill">
+            <mat-label>UserName</mat-label>
+            <input matInput required formControlName="username" />
+           
+          </mat-form-field>
+        </div>
+  
+        <div class="flex-item">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input formControlName="password" requred matInput [type]="hide ? 'password' : 'text'" />
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide" type="button">
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+           
+          </mat-form-field>
+        </div>
+  
+        
+      </mat-dialog-content>
+  
+      <div class="flex-item">
+        <mat-dialog-actions align="end">
+          <button color="warn" mat-button mat-dialog-close>Cancel</button>
+          <button color="primary" mat-button *ngIf="!matSpinnerShow" cdkFocusInitial type="submit"
+            [disabled]="!loginForm.valid" (click)="onSubmit()">
+            Login
+          </button>
+          <mat-spinner *ngIf="matSpinnerShow" [diameter]="55"></mat-spinner>
+        </mat-dialog-actions>
+      </div>
+    </form>
+  </div>

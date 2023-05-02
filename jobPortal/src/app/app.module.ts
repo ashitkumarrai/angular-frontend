@@ -12,7 +12,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AuthModule } from './auth/auth.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { CandidateModule } from './candidate/candidate.module';
+import { AdminModule } from './admin/admin.module';
+import { EmployerModule } from './employer/employer.module';
+import { JwtInterceptor } from './jwt.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +35,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    CandidateModule,
+    AdminModule,
+    EmployerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
